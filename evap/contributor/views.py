@@ -102,7 +102,8 @@ def course_edit(request, course_id):
 
         return redirect('contributor:index')
     else:
-        sort_formset(request, formset)
+        messages.error(request, _("The form was not saved. Please resolve the errors shown below."))
+        rsort_formset(request, formset)
         template_data = dict(form=course_form, formset=formset, course=course, editable=True, responsible=course.responsible_contributor.username)
         return render(request, "contributor_course_form.html", template_data)
 
